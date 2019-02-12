@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/MolStateChange.unity
+- path: Assets/Scenes/StatesPlusVector3ForceApplied.unity
   isLoaded: 1
   isActive: 1
