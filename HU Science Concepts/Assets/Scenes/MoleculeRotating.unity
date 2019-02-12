@@ -441,7 +441,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -25.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1011,8 +1011,8 @@ GameObject:
   - component: {fileID: 1187480312}
   - component: {fileID: 1187480311}
   - component: {fileID: 1187480316}
-  - component: {fileID: 1187480315}
   - component: {fileID: 1187480317}
+  - component: {fileID: 1187480315}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -1105,13 +1105,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1187480310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19eb23e4ddbfcf44a8a16a2979a5d912, type: 3}
+  m_Script: {fileID: 11500000, guid: 7becc060b94ea294ea7bfeca987da1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  xMove: 1
-  yMove: 1
-  zMove: 1
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &1187480316
 Rigidbody:
   m_ObjectHideFlags: 0
