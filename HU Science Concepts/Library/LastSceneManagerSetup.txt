@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/FlatPlaneDiscRandomMotion.unity
+- path: Assets/Scenes/FlatPlaneDisc.unity
   isLoaded: 1
   isActive: 1

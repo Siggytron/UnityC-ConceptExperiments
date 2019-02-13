@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7c0995ba8b3f843a8164efd9cf8d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerForNewPath: 1
+  timerForNewPath: 0
 --- !u!95 &1236144211
 Animator:
   serializedVersion: 3
@@ -446,7 +446,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: d5e974bf86d6f0e42ad7219b2eb124dc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
