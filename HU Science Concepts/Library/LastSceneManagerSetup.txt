@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/StatesPlusVector3ForceApplied.unity
+- path: Assets/Scenes/FlatPlaneDiscRandomMotion.unity
   isLoaded: 1
   isActive: 1
