@@ -642,6 +642,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CollisionInstructions.cs" />
     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\randomMovement.cs" />
     <Compile Include="Assets\Scripts\Vector2ForceApplied.cs" />
