@@ -645,6 +645,7 @@
     <Compile Include="Assets\Scripts\CollisionInstructions.cs" />
     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\randomMovement.cs" />
+    <Compile Include="Assets\Scripts\randomMovementXY.cs" />
     <Compile Include="Assets\Scripts\RepelObjects.cs" />
     <Compile Include="Assets\Scripts\Vector2ForceApplied.cs" />
     <Compile Include="Assets\Scripts\Vector3ForceApplied.cs" />
