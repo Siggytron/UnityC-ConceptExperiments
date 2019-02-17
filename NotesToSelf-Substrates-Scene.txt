@@ -1,0 +1,14 @@
+Parent:
+- Random movement script
+- NavMeshAgent
+- RigidBody
+- Box Collider
+- [invisible]
+
+Child:
+- Reaction script
+- Capsule Collider
+- [invisible]
+
+Child of Child:
+- Will hold sprites
