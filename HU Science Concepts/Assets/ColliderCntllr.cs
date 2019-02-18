@@ -14,13 +14,14 @@ public class ColliderCntllr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        first = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         isAfter = Reaction.isAfter;
+
         if (isAfter && (first == true))
         {
             print("isAfter ="+isAfter);
