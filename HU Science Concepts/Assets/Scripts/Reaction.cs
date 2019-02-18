@@ -10,6 +10,13 @@ public class Reaction : MonoBehaviour
     public float waitTimeTransition = 5;
     public float waitTimeFinal = 6;
 
+    public static bool isAfter;
+    // From what I understand, making this boolean 'static' allows it to 
+    // persist for the run of the program and thus allows me to 
+    // refer to it in other scripts. I'm not sure if every variable
+    // that one ever wants to refer to across scripts needs to be
+    // declared static. A question for another day.
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +33,7 @@ public class Reaction : MonoBehaviour
         animatorB.SetBool("isTransition", false);
         animatorB.SetBool("isFinal", false);
         firstCollide = true;
+        isAfter = false;
 
     }
     
@@ -104,6 +112,9 @@ public class Reaction : MonoBehaviour
         print("Final");
         animatorA.SetBool("isFinal", true);
         animatorB.SetBool("isFinal", true);
+
+        isAfter = true;
+
     }
 
 }
