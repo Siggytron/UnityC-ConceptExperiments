@@ -91,15 +91,20 @@ public class Reaction : MonoBehaviour
     {
         // Stop Initial animation, switch to Pause animation (SubstrateObjects A and B hold image for x seconds.)
         print("Pause");
-        animatorA.SetBool("isPause", true);
-        animatorB.SetBool("isPause", true);
+        //animatorA.SetBool("isPause", true);
+        //animatorB.SetBool("isPause", true);
+        animatorA.Play("Pause", -1, 0);
+        animatorB.Play("Pause", -1, 0);
+
     }
 
     void ToTransitionCycle()
     {
         print("Transition Cycle");
-        animatorA.SetBool("isTransition", true);
-        animatorB.SetBool("isTransition", true);
+        //animatorA.SetBool("isTransition", true);
+        //animatorB.SetBool("isTransition", true);
+        animatorA.Play("TransitionA", -1, 0);
+        animatorB.Play("TransitionB", -1, 0);
 
     }
 
@@ -110,9 +115,13 @@ public class Reaction : MonoBehaviour
         // activate the other.
 
         print("Final");
-        animatorA.SetBool("isFinal", true);
-        animatorB.SetBool("isFinal", true);
+        //animatorA.SetBool("isFinal", true);
+        //animatorB.SetBool("isFinal", true);
+        animatorA.Play("PropertyA", -1, 0);
+        animatorB.Play("PropertyB", -1, 0);
 
+        // This variable is for communicating with the ColliderContllr.cs script
+        // Perhaps I should turn this into a function call.
         isAfter = true;
 
     }
