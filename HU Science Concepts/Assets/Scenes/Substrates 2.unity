@@ -165,7 +165,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 31973488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc7c0995ba8b3f843a8164efd9cf8d96, type: 3}
+  m_Script: {fileID: 11500000, guid: b480db317b9d2bc449f340fa41eebd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerForNewPath: 0
@@ -471,13 +471,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 311527126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb2d3572ff550034d8afe88be52b9e08, type: 3}
+  m_Script: {fileID: 11500000, guid: c6ba47fd084b62848a94254763d012e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderA: {fileID: 1776507248}
-  colliderB: {fileID: 498130466}
-  colliderAafter: {fileID: 1243022917}
-  colliderBafter: {fileID: 112296310}
+  colliderA: {fileID: 0}
+  colliderB: {fileID: 0}
+  colliderAafter: {fileID: 0}
+  colliderBafter: {fileID: 0}
 --- !u!4 &311527128
 Transform:
   m_ObjectHideFlags: 0
@@ -1303,7 +1303,7 @@ GameObject:
   - component: {fileID: 1776507251}
   - component: {fileID: 1776507250}
   - component: {fileID: 1776507249}
-  - component: {fileID: 1776507254}
+  - component: {fileID: 1776507253}
   m_Layer: 0
   m_Name: ColliderObjectA
   m_TagString: Untagged
@@ -1385,7 +1385,7 @@ Transform:
   m_Father: {fileID: 31973494}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1776507254
+--- !u!114 &1776507253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1394,11 +1394,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1776507248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da71ea9e5c436e0408cf1c3069cfbb4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 796bd87c8ade3a64dbe5d077bc675ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waitTimeTransition: 5
-  waitTimeFinal: 20
+  waitTimeFinal: 6
 --- !u!1 &1846091410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846091410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc7c0995ba8b3f843a8164efd9cf8d96, type: 3}
+  m_Script: {fileID: 11500000, guid: b480db317b9d2bc449f340fa41eebd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerForNewPath: 0

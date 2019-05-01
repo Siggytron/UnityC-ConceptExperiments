@@ -642,13 +642,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ColliderCntllr.cs" />
     <Compile Include="Assets\Scripts\CollisionInstructions.cs" />
     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\randomMovementXY.cs" />
     <Compile Include="Assets\Scripts\RepelObjects.cs" />
-    <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\RandomMovement.cs" />
-    <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Reaction.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates1\ColliderCntllr.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates1\RandomMovement.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates1\Reaction.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates2\ColliderCntllr2.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates2\RandomMovement2.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates2\Reaction2.cs" />
     <Compile Include="Assets\Scripts\Vector2ForceApplied.cs" />
     <Compile Include="Assets\Scripts\Vector3ForceApplied.cs" />
   </ItemGroup>
