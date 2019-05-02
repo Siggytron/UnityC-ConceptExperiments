@@ -14,6 +14,9 @@ public class Reaction2 : MonoBehaviour
 
     Rigidbody rigidbodyA;
     Rigidbody rigidbodyB;
+    GameObject parentSubA;
+    GameObject parentSubB;
+    HingeJoint hj;
     Animator animatorA;
     Animator animatorB;
     bool firstCollide;
@@ -48,6 +51,40 @@ public class Reaction2 : MonoBehaviour
         rigidbodyB.transform.parent = tempTrans;
     }
 
+
+    //
+    void CreateJoint()
+    {
+        hj = parentSubA.AddComponent<HingeJoint>();
+        hj.connectedBody = rigidbodyB;
+        print("create joint");
+        rigidbodyB.freezeRotation = true;
+        rigidbodyB.velocity = new Vector3(0, 0, 0);
+        print(hj);
+        print(rigidbodyB);
+        print(rigidbodyB.velocity);
+    }
+    /*
+    function OnCollisionEnter(other : Collision)
+    {
+        if (other.gameObject.tag == "this")
+        {
+            var hj : HingeJoint;
+            hj = gameObject.AddComponent("HingeJoint");
+            hingeJoint.connectedBody = other.rigidbody;
+            rigidbody.mass = 0.00001;
+            collider.material.bounciness = 0;
+            rigidbody.freezeRotation = true;
+            rigidbody.velocity = Vector3(0, 0, 0);
+        }
+    }
+    */
+    void DestroyJoint()
+    {
+        Destroy(hj);
+        //rigidbody.mass = 1;
+    }
+
     private void Awake()
     {
         randomMovement = GetComponent<RandomMovement2>();
@@ -64,6 +101,11 @@ public class Reaction2 : MonoBehaviour
         print(rigidbodyA);
         rigidbodyB = GameObject.Find("parentSubstrateB").GetComponent<Rigidbody>();
         print(rigidbodyB);
+        parentSubA = GameObject.Find("parentSubstrateA");
+        print(parentSubA);
+        parentSubB = GameObject.Find("parentSubstrateB");
+        print(parentSubB);
+
 
         animatorA.SetBool("isPause", false);
         animatorA.SetBool("isTransition", false);
@@ -105,8 +147,8 @@ public class Reaction2 : MonoBehaviour
 
             if (firstCollide == true)
             {
-                ChangeParent();
-                //StateCntllr();
+                //ChangeParent();
+                StateCntllr();
             }
 
             firstCollide = false;
@@ -137,7 +179,8 @@ public class Reaction2 : MonoBehaviour
         // The 2 stick together and drift together
         // Switch to Pause animation (SubstrateObjects A and B hold image for 'waitTimeTransition' seconds.)
         print("Pause");
-        stopMoving = true; 
+        stopMoving = true;
+        CreateJoint();
         animatorA.Play("Pause", 0, 0);
         animatorB.Play("Pause", 0, 0);
 
