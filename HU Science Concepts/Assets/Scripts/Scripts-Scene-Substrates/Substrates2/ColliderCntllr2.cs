@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ColliderCntllr2 : MonoBehaviour
 {
+    // Since we're planning on making the chemical reaction reversible
+    // some of this logic will change in the future. For now, the reaction
+    // just has one direction so there is a boolean 'first' that only
+    // switches on time. 
     public GameObject colliderA;
     public GameObject colliderB;
     public GameObject colliderAafter;

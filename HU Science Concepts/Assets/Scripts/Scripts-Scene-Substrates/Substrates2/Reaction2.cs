@@ -2,27 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Reaction2 : MonoBehaviour
 {
+    /* A note about this script. Currently it is attached to 1 of 2 molecule objects in the scene.
+ * The trigger controls the animations for both molecule objects, which means they are 
+ * almost exactly synchronized. We could configure it so that each molecule has
+ * its own reaction script --In fact, with more molecules we'll almost have to do that --
+ * but I predict that will cause the animations to not be quite as 
+ * synchronized as they are now and will require tweaking. */
+
+    Rigidbody rigidbodyA;
+    Rigidbody rigidbodyB;
     Animator animatorA;
     Animator animatorB;
     bool firstCollide;
     public float waitTimeTransition = 5;
-    public float waitTimeFinal = 6;
-    private RandomMovement randomMovement;
+    public float waitTimeFinal = 20;
+    private RandomMovement2 randomMovement;
     // "What we're...referencing is an instance of the class, [RandomMovement], defined in the 
     // [RandomMovement.cs] script." - Unity manual
 
-    public static bool isAfter;
-    public static bool stopMoving;
-    // Making this boolean 'static' makes it a member of the class, Reaction,
-    // instead of a member of any particular instance of that class. 
-    // Therefore it will persist for the run of the program and allow me to 
-    // refer to it in other scripts. 
+    public static bool isAfter;        // referred to in ColliderCntllr2
+    public static bool stopMoving;     // referred to in RandomMovement2
+                                       // Making this boolean 'static' makes it a member of the class, Reaction,
+                                       // instead of a member of any particular instance of that class. 
+                                       // Therefore it will persist for the run of the program and allow me to 
+                                       // refer to it in other scripts. 
+
+    // All of this makes rigidbodyB the child of rigidbodyA
+    Transform tempTrans;
+
+    //Make object 2 child of object 1.
+    void ChangeParent()
+    {
+        tempTrans = rigidbodyB.transform.parent;
+        print(tempTrans);
+        rigidbodyB.transform.parent = rigidbodyA.transform;
+        print(rigidbodyB.transform.parent);
+    }
+
+    //Revert the parent of object 2.
+    void RevertParent()
+    {
+        rigidbodyB.transform.parent = tempTrans;
+    }
 
     private void Awake()
     {
-        randomMovement = GetComponent<RandomMovement>();
+        randomMovement = GetComponent<RandomMovement2>();
+
     }
     // Start is called before the first frame update
     void Start()
@@ -31,6 +60,10 @@ public class Reaction2 : MonoBehaviour
         print(animatorA);
         animatorB = GameObject.Find("SubstrateB").GetComponent<Animator>();
         print(animatorB);
+        rigidbodyA = GameObject.Find("parentSubstrateA").GetComponent<Rigidbody>();
+        print(rigidbodyA);
+        rigidbodyB = GameObject.Find("parentSubstrateB").GetComponent<Rigidbody>();
+        print(rigidbodyB);
 
         animatorA.SetBool("isPause", false);
         animatorA.SetBool("isTransition", false);
@@ -54,8 +87,14 @@ public class Reaction2 : MonoBehaviour
     // to which this script is attached.
     void OnTriggerEnter(Collider other)
     {
+        /*
+        rigidbody = GetComponent<Rigidbody>();
+        rigidbody.isKinematic = true; // stop physics
+        */
 
-        //print(GetComponent<Collider>().gameObject.name);
+        //transform.parent = other.transform;
+
+        // print(GetComponent<Collider>().gameObject.name);
         // The above prints the name of the gameObject this script is attached to.
         // other.GetComponent...  gets the name of the object associated with the
         // collider that just triggered the trigger event.
@@ -66,13 +105,11 @@ public class Reaction2 : MonoBehaviour
 
             if (firstCollide == true)
             {
-                StateCntllr();
+                ChangeParent();
+                //StateCntllr();
             }
 
             firstCollide = false;
-
-            
-            //Start Transition Script
         }
         
     }
@@ -96,16 +133,20 @@ public class Reaction2 : MonoBehaviour
 
     void ToPauseCycle()
     {
-        // Stop Initial animation, switch to Pause animation (SubstrateObjects A and B hold image for 'waitTimeTransition' seconds.)
+        // Stop Initial animation
+        // The 2 stick together and drift together
+        // Switch to Pause animation (SubstrateObjects A and B hold image for 'waitTimeTransition' seconds.)
         print("Pause");
         stopMoving = true; 
-        animatorA.Play("Pause", -1, 0);
-        animatorB.Play("Pause", -1, 0);
+        animatorA.Play("Pause", 0, 0);
+        animatorB.Play("Pause", 0, 0);
 
     }
 
     void ToTransitionCycle()
     {
+        // Continue to stick together
+        // Switch to Transition animation
         print("Transition Cycle");
         //animatorA.SetBool("isTransition", true);
         //animatorB.SetBool("isTransition", true);

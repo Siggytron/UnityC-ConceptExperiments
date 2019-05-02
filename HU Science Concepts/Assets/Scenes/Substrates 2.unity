@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b480db317b9d2bc449f340fa41eebd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerForNewPath: 0
+  timerForNewPath: 1
 --- !u!65 &31973491
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -474,10 +474,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ba47fd084b62848a94254763d012e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderA: {fileID: 0}
-  colliderB: {fileID: 0}
-  colliderAafter: {fileID: 0}
-  colliderBafter: {fileID: 0}
+  colliderA: {fileID: 1776507248}
+  colliderB: {fileID: 498130466}
+  colliderAafter: {fileID: 1776507248}
+  colliderBafter: {fileID: 498130466}
 --- !u!4 &311527128
 Transform:
   m_ObjectHideFlags: 0
@@ -1398,7 +1398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitTimeTransition: 5
-  waitTimeFinal: 6
+  waitTimeFinal: 20
 --- !u!1 &1846091410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,7 +1455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b480db317b9d2bc449f340fa41eebd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerForNewPath: 0
+  timerForNewPath: 1
 --- !u!65 &1846091413
 BoxCollider:
   m_ObjectHideFlags: 0
