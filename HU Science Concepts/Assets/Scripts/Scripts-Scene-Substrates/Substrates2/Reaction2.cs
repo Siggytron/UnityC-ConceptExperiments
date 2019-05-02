@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Reaction : MonoBehaviour
+public class Reaction2 : MonoBehaviour
 {
     Animator animatorA;
     Animator animatorB;
     bool firstCollide;
     public float waitTimeTransition = 5;
     public float waitTimeFinal = 6;
+    private RandomMovement randomMovement;
+    // "What we're...referencing is an instance of the class, [RandomMovement], defined in the 
+    // [RandomMovement.cs] script." - Unity manual
 
     public static bool isAfter;
-    // From what I understand, making this boolean 'static' allows it to 
-    // persist for the run of the program and thus allows me to 
-    // refer to it in other scripts. I'm not sure if every variable
-    // that one ever wants to refer to across scripts needs to be
-    // declared static. A question for another day.
+    public static bool stopMoving;
+    // Making this boolean 'static' makes it a member of the class, Reaction,
+    // instead of a member of any particular instance of that class. 
+    // Therefore it will persist for the run of the program and allow me to 
+    // refer to it in other scripts. 
 
-
+    private void Awake()
+    {
+        randomMovement = GetComponent<RandomMovement>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +40,7 @@ public class Reaction : MonoBehaviour
         animatorB.SetBool("isFinal", false);
         firstCollide = true;
         isAfter = false;
+        stopMoving = false;
 
     }
     
@@ -89,10 +96,9 @@ public class Reaction : MonoBehaviour
 
     void ToPauseCycle()
     {
-        // Stop Initial animation, switch to Pause animation (SubstrateObjects A and B hold image for x seconds.)
+        // Stop Initial animation, switch to Pause animation (SubstrateObjects A and B hold image for 'waitTimeTransition' seconds.)
         print("Pause");
-        //animatorA.SetBool("isPause", true);
-        //animatorB.SetBool("isPause", true);
+        stopMoving = true; 
         animatorA.Play("Pause", -1, 0);
         animatorB.Play("Pause", -1, 0);
 
@@ -105,11 +111,11 @@ public class Reaction : MonoBehaviour
         //animatorB.SetBool("isTransition", true);
         animatorA.Play("TransitionA", -1, 0);
         animatorB.Play("TransitionB", -1, 0);
-
     }
 
     void ToFinalCycle()
     {
+        stopMoving = false;
         // ColliderObjectsA and B move position relative to substrates
         // Really I think I'm going to have 2 objects, deactivate one and 
         // activate the other.

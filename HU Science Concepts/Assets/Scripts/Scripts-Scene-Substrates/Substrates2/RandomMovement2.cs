@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class  randomMovement: MonoBehaviour
+public class  RandomMovement2: MonoBehaviour
 {
     UnityEngine.AI.NavMeshAgent navMeshAgent;
     public float timerForNewPath;
@@ -38,7 +38,7 @@ public class  randomMovement: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!inCoroutine)
+        if (!inCoroutine && (Reaction.stopMoving==false))
         {
             StartCoroutine(doSomething());
         }

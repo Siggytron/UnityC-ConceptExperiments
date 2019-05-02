@@ -1,0 +1,23 @@
+A cycles through 5 states
+B cycles through 5 states
+
+When the special points collide, both A and B will continue to cycle through those 5 states until they reach single state that is ideal for transition.
+
+For our purposes, we will have state 5 be the ideal state for transition but we will start the cycles for A and B at different points. A will start at 1. B will start at 3.
+
+Then they individually start cycling through their transition 5 states. For the transition, we will have each substrate cycle through its transition states only once. We will slow the rate of change so it is clear to the user that we've entered this transition period. Make rate a public variable. Make number of cycles a public variable as well. 
+
+Also when they collide, they will stick at those points. For now, they will stop moving during the transition period.
+
+So then after the transition, they're behavior will be the same as the beginning but with new images. They will be product A and B.
+
+The process is reversible, so if and when the points collide again, they will transition again in the same way for now. (Ultimately, the transition period will probably run in reverse) They will go back to being substrate A and B.
+
+Look for powerpoint.
+
+Tell Melanie:
+- There are now 5 state images
+- There is a neutral image for the pause
+- The animations cycle through the 5 states
+
+Laura Schumacher
