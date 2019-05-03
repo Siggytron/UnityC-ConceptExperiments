@@ -654,6 +654,7 @@
     <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates2\Reaction2.cs" />
     <Compile Include="Assets\Scripts\Vector2ForceApplied.cs" />
     <Compile Include="Assets\Scripts\Vector3ForceApplied.cs" />
+    <Compile Include="Assets\Transition.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryCommon.uss" />

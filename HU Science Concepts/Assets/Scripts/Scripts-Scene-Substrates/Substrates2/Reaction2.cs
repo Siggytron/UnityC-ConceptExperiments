@@ -12,11 +12,8 @@ public class Reaction2 : MonoBehaviour
  * but I predict that will cause the animations to not be quite as 
  * synchronized as they are now and will require tweaking. */
 
-    Rigidbody rigidbodyA;
-    Rigidbody rigidbodyB;
     GameObject parentSubA;
     GameObject parentSubB;
-    HingeJoint hj;
     Animator animatorA;
     Animator animatorB;
     bool firstCollide;
@@ -25,6 +22,8 @@ public class Reaction2 : MonoBehaviour
     private RandomMovement2 randomMovement;
     // "What we're...referencing is an instance of the class, [RandomMovement], defined in the 
     // [RandomMovement.cs] script." - Unity manual
+    private Transition transition;
+    //public GameObject transitionObject;
 
     public static bool isAfter;        // referred to in ColliderCntllr2
     public static bool stopMoving;     // referred to in RandomMovement2
@@ -33,62 +32,32 @@ public class Reaction2 : MonoBehaviour
                                        // Therefore it will persist for the run of the program and allow me to 
                                        // refer to it in other scripts. 
 
-    // All of this makes rigidbodyB the child of rigidbodyA
-    Transform tempTrans;
-
-    //Make object 2 child of object 1.
-    void ChangeParent()
-    {
-        tempTrans = rigidbodyB.transform.parent;
-        print(tempTrans);
-        rigidbodyB.transform.parent = rigidbodyA.transform;
-        print(rigidbodyB.transform.parent);
-    }
-
-    //Revert the parent of object 2.
-    void RevertParent()
-    {
-        rigidbodyB.transform.parent = tempTrans;
-    }
 
 
-    //
-    void CreateJoint()
+    // Experiment to see if I can get one of the objects to teleport
+    // to a specific spot
+    void PlaceMolecule()
     {
-        hj = parentSubA.AddComponent<HingeJoint>();
-        hj.connectedBody = rigidbodyB;
-        print("create joint");
-        rigidbodyB.freezeRotation = true;
-        rigidbodyB.velocity = new Vector3(0, 0, 0);
-        print(hj);
-        print(rigidbodyB);
-        print(rigidbodyB.velocity);
-    }
-    /*
-    function OnCollisionEnter(other : Collision)
-    {
-        if (other.gameObject.tag == "this")
-        {
-            var hj : HingeJoint;
-            hj = gameObject.AddComponent("HingeJoint");
-            hingeJoint.connectedBody = other.rigidbody;
-            rigidbody.mass = 0.00001;
-            collider.material.bounciness = 0;
-            rigidbody.freezeRotation = true;
-            rigidbody.velocity = Vector3(0, 0, 0);
-        }
-    }
-    */
-    void DestroyJoint()
-    {
-        Destroy(hj);
-        //rigidbody.mass = 1;
+        // Stop moving
+        stopMoving = true;
+
+        // Get current position
+        var curposA = parentSubA.transform.position;
+        print(curposA);
+        var curposB = parentSubB.transform.position;
+        print(curposB);
+
+        // Calculate new position. Average between the two.
+        var avg = (curposA + curposB) / 2;
+        print(avg);
+
+        // Place object in new position
     }
 
-    private void Awake()
+    void Awake()
     {
         randomMovement = GetComponent<RandomMovement2>();
-
+        transition = GetComponent<Transition>();
     }
     // Start is called before the first frame update
     void Start()
@@ -97,15 +66,13 @@ public class Reaction2 : MonoBehaviour
         print(animatorA);
         animatorB = GameObject.Find("SubstrateB").GetComponent<Animator>();
         print(animatorB);
-        rigidbodyA = GameObject.Find("parentSubstrateA").GetComponent<Rigidbody>();
-        print(rigidbodyA);
-        rigidbodyB = GameObject.Find("parentSubstrateB").GetComponent<Rigidbody>();
-        print(rigidbodyB);
         parentSubA = GameObject.Find("parentSubstrateA");
         print(parentSubA);
         parentSubB = GameObject.Find("parentSubstrateB");
         print(parentSubB);
 
+        //Transition.CreateTransition();
+        transition.CreateTransition();
 
         animatorA.SetBool("isPause", false);
         animatorA.SetBool("isTransition", false);
@@ -129,12 +96,6 @@ public class Reaction2 : MonoBehaviour
     // to which this script is attached.
     void OnTriggerEnter(Collider other)
     {
-        /*
-        rigidbody = GetComponent<Rigidbody>();
-        rigidbody.isKinematic = true; // stop physics
-        */
-
-        //transform.parent = other.transform;
 
         // print(GetComponent<Collider>().gameObject.name);
         // The above prints the name of the gameObject this script is attached to.
@@ -147,8 +108,8 @@ public class Reaction2 : MonoBehaviour
 
             if (firstCollide == true)
             {
-                //ChangeParent();
-                StateCntllr();
+                PlaceMolecule();
+                //StateCntllr();
             }
 
             firstCollide = false;
@@ -157,11 +118,8 @@ public class Reaction2 : MonoBehaviour
     }
     
 
-   void StateCntllr()
+    void StateCntllr()          // Take animation state from one to the next
     {
-
-        // Take animation state from one to the next
-
         // Go from Initial to Pause
         ToPauseCycle();
 
@@ -170,7 +128,6 @@ public class Reaction2 : MonoBehaviour
 
         // Go from Transition to Final state
         Invoke("ToFinalCycle", waitTimeFinal);
-
     }
 
     void ToPauseCycle()
@@ -180,10 +137,9 @@ public class Reaction2 : MonoBehaviour
         // Switch to Pause animation (SubstrateObjects A and B hold image for 'waitTimeTransition' seconds.)
         print("Pause");
         stopMoving = true;
-        CreateJoint();
+        
         animatorA.Play("Pause", 0, 0);
         animatorB.Play("Pause", 0, 0);
-
     }
 
     void ToTransitionCycle()
@@ -200,9 +156,6 @@ public class Reaction2 : MonoBehaviour
     void ToFinalCycle()
     {
         stopMoving = false;
-        // ColliderObjectsA and B move position relative to substrates
-        // Really I think I'm going to have 2 objects, deactivate one and 
-        // activate the other.
 
         print("Final");
         //animatorA.SetBool("isFinal", true);
@@ -211,7 +164,6 @@ public class Reaction2 : MonoBehaviour
         animatorB.Play("PropertyB", -1, 0);
 
         // This variable is for communicating with the ColliderContllr.cs script
-        // Perhaps I should turn this into a function call.
         isAfter = true;
 
     }
