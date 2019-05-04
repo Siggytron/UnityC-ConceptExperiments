@@ -16,14 +16,14 @@ public class Reaction2 : MonoBehaviour
     GameObject parentSubB;
     Animator animatorA;
     Animator animatorB;
-    bool firstCollide;
+    public static bool firstCollide = true;
     public float waitTimeTransition = 5;
     public float waitTimeFinal = 20;
     private RandomMovement2 randomMovement;
     // "What we're...referencing is an instance of the class, [RandomMovement], defined in the 
     // [RandomMovement.cs] script." - Unity manual
     private Transition transition;
-    //public GameObject transitionObject;
+    public GameObject transitionObject;
 
     public static bool isAfter;        // referred to in ColliderCntllr2
     public static bool stopMoving;     // referred to in RandomMovement2
@@ -31,6 +31,7 @@ public class Reaction2 : MonoBehaviour
                                        // instead of a member of any particular instance of that class. 
                                        // Therefore it will persist for the run of the program and allow me to 
                                        // refer to it in other scripts. 
+    public static bool isReaction = false;
 
 
 
@@ -72,7 +73,8 @@ public class Reaction2 : MonoBehaviour
         print(parentSubB);
 
         //Transition.CreateTransition();
-        transition.CreateTransition();
+        //transition.CreateTransition();
+        transitionObject = GameObject.Find("transitionObj");
 
         animatorA.SetBool("isPause", false);
         animatorA.SetBool("isTransition", false);
@@ -108,7 +110,8 @@ public class Reaction2 : MonoBehaviour
 
             if (firstCollide == true)
             {
-                PlaceMolecule();
+                isReaction = true;
+                //PlaceMolecule();
                 //StateCntllr();
             }
 
