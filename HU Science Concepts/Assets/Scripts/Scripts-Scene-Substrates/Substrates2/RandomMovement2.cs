@@ -10,11 +10,13 @@ public class  RandomMovement2: MonoBehaviour
         // not going anywhere and changing direction before they've moved forward on any particular path
         // but you don't want it to be too high either.
     private bool inCoroutine;
+    public float randSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        navMeshAgent.speed = randSpeed;
     }
 
     Vector3 getNewRandomPosition()

@@ -642,6 +642,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Products.cs" />
     <Compile Include="Assets\Scripts\CollisionInstructions.cs" />
     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\randomMovementXY.cs" />
@@ -652,9 +653,9 @@
     <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates2\ColliderCntllr2.cs" />
     <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates2\RandomMovement2.cs" />
     <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates2\Reaction2.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates2\Transition.cs" />
     <Compile Include="Assets\Scripts\Vector2ForceApplied.cs" />
     <Compile Include="Assets\Scripts\Vector3ForceApplied.cs" />
-    <Compile Include="Assets\Transition.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryCommon.uss" />

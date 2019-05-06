@@ -90,7 +90,7 @@ Animator:
   m_GameObject: {fileID: 3286771442132552436}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cf583a13b6258ff479f3c2702fd47187, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6c90352f3edb46f468690d546e263b4e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 6870965751451394256}
   - component: {fileID: 4717822285356615589}
   m_Layer: 0
-  m_Name: parentTrans
+  m_Name: parentTransition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b480db317b9d2bc449f340fa41eebd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerForNewPath: 1
+  timerForNewPath: 2
+  randSpeed: 2
 --- !u!195 &6870965751451394256
 NavMeshAgent:
   m_ObjectHideFlags: 0

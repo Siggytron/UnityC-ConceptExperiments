@@ -12,26 +12,28 @@ public class Reaction2 : MonoBehaviour
  * but I predict that will cause the animations to not be quite as 
  * synchronized as they are now and will require tweaking. */
 
-    GameObject parentSubA;
-    GameObject parentSubB;
+    public static GameObject parentSubA;
+    public static GameObject parentSubB;
     Animator animatorA;
     Animator animatorB;
-    public static bool firstCollide = true;
+    public static Vector3 colliderPos;
+
     public float waitTimeTransition = 5;
     public float waitTimeFinal = 20;
     private RandomMovement2 randomMovement;
+    private ColliderCntllr2 colliderCntllr;
     // "What we're...referencing is an instance of the class, [RandomMovement], defined in the 
     // [RandomMovement.cs] script." - Unity manual
-    private Transition transition;
-    public GameObject transitionObject;
 
+    public static bool firstCollide = true;   // referred to in Transition
+    public static bool isReaction = false;     // referred to in Transition
     public static bool isAfter;        // referred to in ColliderCntllr2
     public static bool stopMoving;     // referred to in RandomMovement2
                                        // Making this boolean 'static' makes it a member of the class, Reaction,
                                        // instead of a member of any particular instance of that class. 
                                        // Therefore it will persist for the run of the program and allow me to 
                                        // refer to it in other scripts. 
-    public static bool isReaction = false;
+
 
 
 
@@ -40,17 +42,17 @@ public class Reaction2 : MonoBehaviour
     void PlaceMolecule()
     {
         // Stop moving
-        stopMoving = true;
-
+        //stopMoving = true;
+        isReaction = true;
         // Get current position
         var curposA = parentSubA.transform.position;
-        print(curposA);
+        print("currentPosition of SubstrateA"+ curposA);
         var curposB = parentSubB.transform.position;
-        print(curposB);
+        print("currentPosition of SubstrateB" + curposB);
 
         // Calculate new position. Average between the two.
         var avg = (curposA + curposB) / 2;
-        print(avg);
+        print("avg = "+ avg);
 
         // Place object in new position
     }
@@ -58,23 +60,22 @@ public class Reaction2 : MonoBehaviour
     void Awake()
     {
         randomMovement = GetComponent<RandomMovement2>();
-        transition = GetComponent<Transition>();
+        colliderCntllr = GetComponent<ColliderCntllr2>();
+        //transition = GetComponent<Transition>();
+        isReaction = false;
+        firstCollide = true;
+        isAfter = false;
+        stopMoving = false;
     }
     // Start is called before the first frame update
     void Start()
     {
         animatorA = GameObject.Find("SubstrateA").GetComponent<Animator>();
-        print(animatorA);
         animatorB = GameObject.Find("SubstrateB").GetComponent<Animator>();
-        print(animatorB);
         parentSubA = GameObject.Find("parentSubstrateA");
-        print(parentSubA);
         parentSubB = GameObject.Find("parentSubstrateB");
-        print(parentSubB);
 
-        //Transition.CreateTransition();
-        //transition.CreateTransition();
-        transitionObject = GameObject.Find("transitionObj");
+        //transitionObject = GameObject.Find("transitionObj");
 
         animatorA.SetBool("isPause", false);
         animatorA.SetBool("isTransition", false);
@@ -82,9 +83,7 @@ public class Reaction2 : MonoBehaviour
         animatorB.SetBool("isPause", false);
         animatorB.SetBool("isTransition", false);
         animatorB.SetBool("isFinal", false);
-        firstCollide = true;
-        isAfter = false;
-        stopMoving = false;
+
 
     }
     
@@ -98,20 +97,23 @@ public class Reaction2 : MonoBehaviour
     // to which this script is attached.
     void OnTriggerEnter(Collider other)
     {
-
+        colliderPos = other.transform.position;
+        print("Collider other " + other.transform.position);
+        print("colliderPos " + colliderPos);
         // print(GetComponent<Collider>().gameObject.name);
         // The above prints the name of the gameObject this script is attached to.
         // other.GetComponent...  gets the name of the object associated with the
         // collider that just triggered the trigger event.
-        
+
         if (other.GetComponent<Collider>().gameObject.name == "ColliderObjectB")
         {
             print("B Reaction");
+            print("ColliderB position " + other.GetComponent<Collider>().gameObject.transform.position);
+
 
             if (firstCollide == true)
             {
-                isReaction = true;
-                //PlaceMolecule();
+                PlaceMolecule();
                 //StateCntllr();
             }
 
