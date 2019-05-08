@@ -642,11 +642,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Products.cs" />
-    <Compile Include="Assets\Scripts\CollisionInstructions.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
-    <Compile Include="Assets\Scripts\randomMovementXY.cs" />
-    <Compile Include="Assets\Scripts\RepelObjects.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Joint Experiment\MoveJointExperiment.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Joint Experiment\ReactionJointExperiment.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Miscellaneous\CollisionInstructions.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Miscellaneous\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Miscellaneous\Products.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Miscellaneous\randomMovementXY.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Miscellaneous\RepelObjects.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Miscellaneous\Vector2ForceApplied.cs" />
+    <Compile Include="Assets\Scripts\Scripts-Miscellaneous\Vector3ForceApplied.cs" />
     <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates1\ColliderCntllr.cs" />
     <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates1\RandomMovement.cs" />
     <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates1\Reaction.cs" />
@@ -654,8 +658,6 @@
     <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates2\RandomMovement2.cs" />
     <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates2\Reaction2.cs" />
     <Compile Include="Assets\Scripts\Scripts-Scene-Substrates\Substrates2\Transition.cs" />
-    <Compile Include="Assets\Scripts\Vector2ForceApplied.cs" />
-    <Compile Include="Assets\Scripts\Vector3ForceApplied.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryCommon.uss" />

@@ -5,7 +5,7 @@ using UnityEngine;
 public class  RandomMovement: MonoBehaviour
 {
     UnityEngine.AI.NavMeshAgent navMeshAgent;
-    public float timerForNewPath;
+    public float timerForNewPath = 1;
     private bool inCoroutine;
 
     // Start is called before the first frame update
