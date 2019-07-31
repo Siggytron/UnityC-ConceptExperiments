@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Joint Experiments/Joint Experiment.unity
+- path: Assets/Scenes/Substrates 3.unity
   isLoaded: 1
   isActive: 1

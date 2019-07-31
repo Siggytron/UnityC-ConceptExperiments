@@ -41,20 +41,8 @@ public class Reaction2 : MonoBehaviour
     // to a specific spot
     void PlaceMolecule()
     {
-        // Stop moving
         //stopMoving = true;
         isReaction = true;
-        // Get current position
-        var curposA = parentSubA.transform.position;
-        print("currentPosition of SubstrateA"+ curposA);
-        var curposB = parentSubB.transform.position;
-        print("currentPosition of SubstrateB" + curposB);
-
-        // Calculate new position. Average between the two.
-        var avg = (curposA + curposB) / 2;
-        print("avg = "+ avg);
-
-        // Place object in new position
     }
 
     void Awake()
@@ -70,19 +58,22 @@ public class Reaction2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animatorA = GameObject.Find("SubstrateA").GetComponent<Animator>();
-        animatorB = GameObject.Find("SubstrateB").GetComponent<Animator>();
-        parentSubA = GameObject.Find("parentSubstrateA");
-        parentSubB = GameObject.Find("parentSubstrateB");
+        if (ColliderCntllr2.first == true)
+        {
+            animatorA = GameObject.Find("SubstrateA").GetComponent<Animator>();
+            animatorB = GameObject.Find("SubstrateB").GetComponent<Animator>();
+            parentSubA = GameObject.Find("parentSubstrateA");
+            parentSubB = GameObject.Find("parentSubstrateB");
 
-        //transitionObject = GameObject.Find("transitionObj");
 
-        animatorA.SetBool("isPause", false);
-        animatorA.SetBool("isTransition", false);
-        animatorA.SetBool("isFinal", false);
-        animatorB.SetBool("isPause", false);
-        animatorB.SetBool("isTransition", false);
-        animatorB.SetBool("isFinal", false);
+            animatorA.SetBool("isPause", false);
+            animatorA.SetBool("isTransition", false);
+            animatorA.SetBool("isFinal", false);
+            animatorB.SetBool("isPause", false);
+            animatorB.SetBool("isTransition", false);
+            animatorB.SetBool("isFinal", false);
+        }
+
 
 
     }
@@ -122,7 +113,7 @@ public class Reaction2 : MonoBehaviour
         
     }
     
-
+    /*
     void StateCntllr()          // Take animation state from one to the next
     {
         // Go from Initial to Pause
@@ -134,6 +125,7 @@ public class Reaction2 : MonoBehaviour
         // Go from Transition to Final state
         Invoke("ToFinalCycle", waitTimeFinal);
     }
+    */
 
     void ToPauseCycle()
     {

@@ -12,10 +12,10 @@ public class ColliderCntllr2 : MonoBehaviour
 
     public GameObject colliderA;
     public GameObject colliderB;
-    public GameObject colliderAafter;
-    public GameObject colliderBafter;
+    //public GameObject colliderAafter;
+    //public GameObject colliderBafter;
     bool isAfter;
-    bool first;
+    public static bool first;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +33,8 @@ public class ColliderCntllr2 : MonoBehaviour
             print("isAfter ="+isAfter);
             colliderA.SetActive(false);
             colliderB.SetActive(false);
-            colliderAafter.SetActive(true);
-            colliderBafter.SetActive(true);
+            //colliderAafter.SetActive(true);
+            //colliderBafter.SetActive(true);
             first = false;
         }
     }
