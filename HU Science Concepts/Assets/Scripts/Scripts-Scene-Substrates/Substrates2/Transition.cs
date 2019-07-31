@@ -57,7 +57,6 @@ public class Transition : MonoBehaviour
 
 
         transitionClone = Instantiate(transitionOb, Reaction2.colliderPos, transform.rotation);
-        //Instantiate(transitionOb, Reaction2.colliderPos , transform.rotation);
         Reaction2.parentSubA.SetActive(false);
         Reaction2.parentSubB.SetActive(false);
         shouldInstantiate = false;
