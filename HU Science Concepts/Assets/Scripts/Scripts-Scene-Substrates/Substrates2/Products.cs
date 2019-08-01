@@ -18,28 +18,20 @@ public class Products : MonoBehaviour
     public float waitTimeDestroyTransition;
     bool shouldDestroy = true;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if ((Transition.startProducts == true) && (shouldDestroy == true)) 
         {
-            Invoke("StartProductCycle", waitTimeDestroyTransition);
+            Invoke("TransToProductCycle", waitTimeDestroyTransition);
             Transition.startProducts = false;
         }
     }
-    void StartProductCycle()
+    void TransToProductCycle()
     {
-        print("StartProductCycle: Transition.transitionClone status is =" + Transition.transitionClone);
-
+        print("TransToProductCycle: Transition.transitionClone status is =" + Transition.transitionClone);
         print("Transition.startProducts =" + Transition.startProducts);
 
-        //CreateProducts();
+        //Destroy Transition object
         if ((Transition.transitionClone != null)&&(shouldDestroy == true))
         {
             // Destroy clone
@@ -47,9 +39,6 @@ public class Products : MonoBehaviour
             DestroyTransition();
             shouldDestroy = false;
         }
-
-        //CreateProducts();
-        
     }
 
     void DestroyTransition()
@@ -62,25 +51,15 @@ public class Products : MonoBehaviour
         Destroy(Transition.transitionClone);
 
         CreateProducts();
-
-        /*
-         * 
-         * Below is the message I got when I was trying to destroy the game object 
-         * to which the prefab was attached. Instead I created a game object variable to hold the 
-         * instantiated clone and destroyed that instead. That process did not lead to the
-         * error message below.
-        "Destroying assets is not permitted to avoid data loss.
-        If you really want to remove an asset use DestroyImmediate(theObject, true);"
-        */
     }
 
     void CreateProducts()
     {
         print("in CreateProducts");
-        //prodAClone = Instantiate(prodA, transform.position, transform.rotation);
-        //prodBClone = Instantiate(prodB, transform.position, transform.rotation);
-        prodAClone = Instantiate(prodA, (currentTransitionPos - Transition.subAdistFrom), Transition.subARot);
-        prodBClone = Instantiate(prodB, (currentTransitionPos - Transition.subBdistFrom), Transition.subBRot);
+        prodAClone = Instantiate(prodA, transform.position, transform.rotation);
+        prodBClone = Instantiate(prodB, transform.position, transform.rotation);
+        //prodAClone = Instantiate(prodA, (currentTransitionPos - Transition.subAdistFrom), Transition.subARot);
+        //prodBClone = Instantiate(prodB, (currentTransitionPos - Transition.subBdistFrom), Transition.subBRot);
 
     }
 }

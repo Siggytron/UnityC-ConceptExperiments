@@ -5,14 +5,10 @@ using UnityEngine;
 public class  RandomMovement2: MonoBehaviour
 {
     UnityEngine.AI.NavMeshAgent navMeshAgent;
-    public float timerForNewPath;
-        // You probably want this to be greater than 0 so the molecules don't just shake in place 
-        // not going anywhere and changing direction before they've moved forward on any particular path
-        // but you don't want it to be too high either.
+    public float timerForNewPath;   // You probably want this to be greater than 0 so the molecules don't just shake in place 
     private bool inCoroutine;
     public float randSpeed;
 
-    // Start is called before the first frame update
     void Start()
     {
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -40,7 +36,7 @@ public class  RandomMovement2: MonoBehaviour
     {
         navMeshAgent.SetDestination(getNewRandomPosition());
     }
-    // Update is called once per frame
+    
     void Update()
     {
         if (!inCoroutine && (Reaction2.stopMoving==false))

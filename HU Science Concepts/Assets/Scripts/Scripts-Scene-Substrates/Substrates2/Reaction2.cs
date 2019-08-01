@@ -37,13 +37,7 @@ public class Reaction2 : MonoBehaviour
 
 
 
-    // Experiment to see if I can get one of the objects to teleport
-    // to a specific spot
-    void PlaceMolecule()
-    {
-        //stopMoving = true;
-        isReaction = true;
-    }
+
 
     void Awake()
     {
@@ -60,22 +54,20 @@ public class Reaction2 : MonoBehaviour
     {
         if (ColliderCntllr2.first == true)
         {
-            animatorA = GameObject.Find("SubstrateA").GetComponent<Animator>();
-            animatorB = GameObject.Find("SubstrateB").GetComponent<Animator>();
+            animatorA = GameObject.Find("Water").GetComponent<Animator>();
+            animatorB = GameObject.Find("Hydronium").GetComponent<Animator>();
             parentSubA = GameObject.Find("parentSubstrateA");
             parentSubB = GameObject.Find("parentSubstrateB");
 
-
+            /*
             animatorA.SetBool("isPause", false);
             animatorA.SetBool("isTransition", false);
             animatorA.SetBool("isFinal", false);
             animatorB.SetBool("isPause", false);
             animatorB.SetBool("isTransition", false);
             animatorB.SetBool("isFinal", false);
+            */
         }
-
-
-
     }
     
     // We have to use OnTriggerEnter instead of OnCollisionEnter because
@@ -89,81 +81,27 @@ public class Reaction2 : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         colliderPos = other.transform.position;
-        print("Collider other " + other.transform.position);
+        print("Collider other " + other.transform.position);      // gets the name of the object associated with the collider that just triggered the trigger event.
         print("colliderPos " + colliderPos);
-        // print(GetComponent<Collider>().gameObject.name);
-        // The above prints the name of the gameObject this script is attached to.
-        // other.GetComponent...  gets the name of the object associated with the
-        // collider that just triggered the trigger event.
 
         if (other.GetComponent<Collider>().gameObject.name == "ColliderObjectB")
         {
             print("B Reaction");
             print("ColliderB position " + other.GetComponent<Collider>().gameObject.transform.position);
 
-
             if (firstCollide == true)
             {
-                PlaceMolecule();
-                //StateCntllr();
+                SetTransitionFlag();
             }
 
             firstCollide = false;
         }
         
     }
-    
-    /*
-    void StateCntllr()          // Take animation state from one to the next
+    void SetTransitionFlag()
     {
-        // Go from Initial to Pause
-        ToPauseCycle();
-
-        // Go from Pause to Transition after x seconds
-        Invoke("ToTransitionCycle", waitTimeTransition);
-
-        // Go from Transition to Final state
-        Invoke("ToFinalCycle", waitTimeFinal);
-    }
-    */
-
-    void ToPauseCycle()
-    {
-        // Stop Initial animation
-        // The 2 stick together and drift together
-        // Switch to Pause animation (SubstrateObjects A and B hold image for 'waitTimeTransition' seconds.)
-        print("Pause");
+        isReaction = true;
         stopMoving = true;
-        
-        animatorA.Play("Pause", 0, 0);
-        animatorB.Play("Pause", 0, 0);
     }
-
-    void ToTransitionCycle()
-    {
-        // Continue to stick together
-        // Switch to Transition animation
-        print("Transition Cycle");
-        //animatorA.SetBool("isTransition", true);
-        //animatorB.SetBool("isTransition", true);
-        animatorA.Play("TransitionA", -1, 0);
-        animatorB.Play("TransitionB", -1, 0);
-    }
-
-    void ToFinalCycle()
-    {
-        stopMoving = false;
-
-        print("Final");
-        //animatorA.SetBool("isFinal", true);
-        //animatorB.SetBool("isFinal", true);
-        animatorA.Play("PropertyA", -1, 0);
-        animatorB.Play("PropertyB", -1, 0);
-
-        // This variable is for communicating with the ColliderContllr.cs script
-        isAfter = true;
-
-    }
-
 }
 
